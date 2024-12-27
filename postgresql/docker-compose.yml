@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres:14.1
+    container_name: db
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./postgresql.conf:/etc/postgresql.conf
+    ports:
+      - "55437:5432"
+    command: postgres -c config_file=/etc/postgresql.conf
